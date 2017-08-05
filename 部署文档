@@ -1,0 +1,6 @@
+index.jsp countcolumn.jsp detail.jsp localhost:8080 替换成123.56.146.216
+SearchController 参数不用转码
+拷贝indexpath文件夹
+拷贝lib文件夹下的jar包
+修改数据库连接配置
+修改indexpath文件夹位置配置

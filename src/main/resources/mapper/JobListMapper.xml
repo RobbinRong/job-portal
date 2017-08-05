@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buu.job.mapper.JobListMapper" >
+  <resultMap id="BaseResultMap" type="com.buu.job.domain.JobList" >
+    <id column="positionId" property="positionid" jdbcType="INTEGER" />
+    <result column="companyId" property="companyid" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="positionName" property="positionname" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="VARCHAR" />
+    <result column="jobNature" property="jobnature" jdbcType="VARCHAR" />
+    <result column="workYear" property="workyear" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="companyLogo" property="companylogo" jdbcType="VARCHAR" />
+    <result column="positionAdvantage" property="positionadvantage" jdbcType="VARCHAR" />
+    <result column="salary" property="salary" jdbcType="VARCHAR" />
+    <result column="approve" property="approve" jdbcType="INTEGER" />
+    <result column="industryField" property="industryfield" jdbcType="VARCHAR" />
+    <result column="companyShortName" property="companyshortname" jdbcType="VARCHAR" />
+    <result column="financeStage" property="financestage" jdbcType="VARCHAR" />
+    <result column="companySize" property="companysize" jdbcType="VARCHAR" />
+    <result column="companyLabelList" property="companylabellist" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="formatCreateTime" property="formatcreatetime" jdbcType="VARCHAR" />
+    <result column="companyFullName" property="companyfullname" jdbcType="VARCHAR" />
+    <result column="adWord" property="adword" jdbcType="INTEGER" />
+    <result column="businessZones" property="businesszones" jdbcType="VARCHAR" />
+    <result column="imState" property="imstate" jdbcType="VARCHAR" />
+    <result column="lastLogin" property="lastlogin" jdbcType="VARCHAR" />
+    <result column="publisherId" property="publisherid" jdbcType="INTEGER" />
+    <result column="plus" property="plus" jdbcType="VARCHAR" />
+    <result column="pcShow" property="pcshow" jdbcType="INTEGER" />
+    <result column="appShow" property="appshow" jdbcType="INTEGER" />
+    <result column="deliver" property="deliver" jdbcType="INTEGER" />
+    <result column="gradeDescription" property="gradedescription" jdbcType="VARCHAR" />
+    <result column="promotionScoreExplain" property="promotionscoreexplain" jdbcType="VARCHAR" />
+    <result column="positionCatId" property="positioncatid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    positionId, companyId, score, positionName, createTime, jobNature, workYear, education, 
+    city, companyLogo, positionAdvantage, salary, approve, industryField, companyShortName, 
+    financeStage, companySize, companyLabelList, district, formatCreateTime, companyFullName, 
+    adWord, businessZones, imState, lastLogin, publisherId, plus, pcShow, appShow, deliver, 
+    gradeDescription, promotionScoreExplain, positionCatId
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.buu.job.domain.JobListExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from job_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from job_list
+    where positionId = #{positionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from job_list
+    where positionId = #{positionid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.buu.job.domain.JobListExample" >
+    delete from job_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.buu.job.domain.JobList" >
+    insert into job_list (positionId, companyId, score, 
+      positionName, createTime, jobNature, 
+      workYear, education, city, 
+      companyLogo, positionAdvantage, salary, 
+      approve, industryField, companyShortName, 
+      financeStage, companySize, companyLabelList, 
+      district, formatCreateTime, companyFullName, 
+      adWord, businessZones, imState, 
+      lastLogin, publisherId, plus, 
+      pcShow, appShow, deliver, 
+      gradeDescription, promotionScoreExplain, 
+      positionCatId)
+    values (#{positionid,jdbcType=INTEGER}, #{companyid,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
+      #{positionname,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{jobnature,jdbcType=VARCHAR}, 
+      #{workyear,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{companylogo,jdbcType=VARCHAR}, #{positionadvantage,jdbcType=VARCHAR}, #{salary,jdbcType=VARCHAR}, 
+      #{approve,jdbcType=INTEGER}, #{industryfield,jdbcType=VARCHAR}, #{companyshortname,jdbcType=VARCHAR}, 
+      #{financestage,jdbcType=VARCHAR}, #{companysize,jdbcType=VARCHAR}, #{companylabellist,jdbcType=VARCHAR}, 
+      #{district,jdbcType=VARCHAR}, #{formatcreatetime,jdbcType=VARCHAR}, #{companyfullname,jdbcType=VARCHAR}, 
+      #{adword,jdbcType=INTEGER}, #{businesszones,jdbcType=VARCHAR}, #{imstate,jdbcType=VARCHAR}, 
+      #{lastlogin,jdbcType=VARCHAR}, #{publisherid,jdbcType=INTEGER}, #{plus,jdbcType=VARCHAR}, 
+      #{pcshow,jdbcType=INTEGER}, #{appshow,jdbcType=INTEGER}, #{deliver,jdbcType=INTEGER}, 
+      #{gradedescription,jdbcType=VARCHAR}, #{promotionscoreexplain,jdbcType=VARCHAR}, 
+      #{positioncatid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.buu.job.domain.JobList" >
+    insert into job_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="positionid != null" >
+        positionId,
+      </if>
+      <if test="companyid != null" >
+        companyId,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="positionname != null" >
+        positionName,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="jobnature != null" >
+        jobNature,
+      </if>
+      <if test="workyear != null" >
+        workYear,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="companylogo != null" >
+        companyLogo,
+      </if>
+      <if test="positionadvantage != null" >
+        positionAdvantage,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="approve != null" >
+        approve,
+      </if>
+      <if test="industryfield != null" >
+        industryField,
+      </if>
+      <if test="companyshortname != null" >
+        companyShortName,
+      </if>
+      <if test="financestage != null" >
+        financeStage,
+      </if>
+      <if test="companysize != null" >
+        companySize,
+      </if>
+      <if test="companylabellist != null" >
+        companyLabelList,
+      </if>
+      <if test="district != null" >
+        district,
+      </if>
+      <if test="formatcreatetime != null" >
+        formatCreateTime,
+      </if>
+      <if test="companyfullname != null" >
+        companyFullName,
+      </if>
+      <if test="adword != null" >
+        adWord,
+      </if>
+      <if test="businesszones != null" >
+        businessZones,
+      </if>
+      <if test="imstate != null" >
+        imState,
+      </if>
+      <if test="lastlogin != null" >
+        lastLogin,
+      </if>
+      <if test="publisherid != null" >
+        publisherId,
+      </if>
+      <if test="plus != null" >
+        plus,
+      </if>
+      <if test="pcshow != null" >
+        pcShow,
+      </if>
+      <if test="appshow != null" >
+        appShow,
+      </if>
+      <if test="deliver != null" >
+        deliver,
+      </if>
+      <if test="gradedescription != null" >
+        gradeDescription,
+      </if>
+      <if test="promotionscoreexplain != null" >
+        promotionScoreExplain,
+      </if>
+      <if test="positioncatid != null" >
+        positionCatId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="positionid != null" >
+        #{positionid,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="positionname != null" >
+        #{positionname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="jobnature != null" >
+        #{jobnature,jdbcType=VARCHAR},
+      </if>
+      <if test="workyear != null" >
+        #{workyear,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="companylogo != null" >
+        #{companylogo,jdbcType=VARCHAR},
+      </if>
+      <if test="positionadvantage != null" >
+        #{positionadvantage,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="approve != null" >
+        #{approve,jdbcType=INTEGER},
+      </if>
+      <if test="industryfield != null" >
+        #{industryfield,jdbcType=VARCHAR},
+      </if>
+      <if test="companyshortname != null" >
+        #{companyshortname,jdbcType=VARCHAR},
+      </if>
+      <if test="financestage != null" >
+        #{financestage,jdbcType=VARCHAR},
+      </if>
+      <if test="companysize != null" >
+        #{companysize,jdbcType=VARCHAR},
+      </if>
+      <if test="companylabellist != null" >
+        #{companylabellist,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="formatcreatetime != null" >
+        #{formatcreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="companyfullname != null" >
+        #{companyfullname,jdbcType=VARCHAR},
+      </if>
+      <if test="adword != null" >
+        #{adword,jdbcType=INTEGER},
+      </if>
+      <if test="businesszones != null" >
+        #{businesszones,jdbcType=VARCHAR},
+      </if>
+      <if test="imstate != null" >
+        #{imstate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastlogin != null" >
+        #{lastlogin,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherid != null" >
+        #{publisherid,jdbcType=INTEGER},
+      </if>
+      <if test="plus != null" >
+        #{plus,jdbcType=VARCHAR},
+      </if>
+      <if test="pcshow != null" >
+        #{pcshow,jdbcType=INTEGER},
+      </if>
+      <if test="appshow != null" >
+        #{appshow,jdbcType=INTEGER},
+      </if>
+      <if test="deliver != null" >
+        #{deliver,jdbcType=INTEGER},
+      </if>
+      <if test="gradedescription != null" >
+        #{gradedescription,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionscoreexplain != null" >
+        #{promotionscoreexplain,jdbcType=VARCHAR},
+      </if>
+      <if test="positioncatid != null" >
+        #{positioncatid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.buu.job.domain.JobListExample" resultType="java.lang.Integer" >
+    select count(*) from job_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update job_list
+    <set >
+      <if test="record.positionid != null" >
+        positionId = #{record.positionid,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyid != null" >
+        companyId = #{record.companyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.positionname != null" >
+        positionName = #{record.positionname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobnature != null" >
+        jobNature = #{record.jobnature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workyear != null" >
+        workYear = #{record.workyear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null" >
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companylogo != null" >
+        companyLogo = #{record.companylogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positionadvantage != null" >
+        positionAdvantage = #{record.positionadvantage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salary != null" >
+        salary = #{record.salary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approve != null" >
+        approve = #{record.approve,jdbcType=INTEGER},
+      </if>
+      <if test="record.industryfield != null" >
+        industryField = #{record.industryfield,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyshortname != null" >
+        companyShortName = #{record.companyshortname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financestage != null" >
+        financeStage = #{record.financestage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companysize != null" >
+        companySize = #{record.companysize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companylabellist != null" >
+        companyLabelList = #{record.companylabellist,jdbcType=VARCHAR},
+      </if>
+      <if test="record.district != null" >
+        district = #{record.district,jdbcType=VARCHAR},
+      </if>
+      <if test="record.formatcreatetime != null" >
+        formatCreateTime = #{record.formatcreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyfullname != null" >
+        companyFullName = #{record.companyfullname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adword != null" >
+        adWord = #{record.adword,jdbcType=INTEGER},
+      </if>
+      <if test="record.businesszones != null" >
+        businessZones = #{record.businesszones,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imstate != null" >
+        imState = #{record.imstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastlogin != null" >
+        lastLogin = #{record.lastlogin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publisherid != null" >
+        publisherId = #{record.publisherid,jdbcType=INTEGER},
+      </if>
+      <if test="record.plus != null" >
+        plus = #{record.plus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pcshow != null" >
+        pcShow = #{record.pcshow,jdbcType=INTEGER},
+      </if>
+      <if test="record.appshow != null" >
+        appShow = #{record.appshow,jdbcType=INTEGER},
+      </if>
+      <if test="record.deliver != null" >
+        deliver = #{record.deliver,jdbcType=INTEGER},
+      </if>
+      <if test="record.gradedescription != null" >
+        gradeDescription = #{record.gradedescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promotionscoreexplain != null" >
+        promotionScoreExplain = #{record.promotionscoreexplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positioncatid != null" >
+        positionCatId = #{record.positioncatid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update job_list
+    set positionId = #{record.positionid,jdbcType=INTEGER},
+      companyId = #{record.companyid,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=INTEGER},
+      positionName = #{record.positionname,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=VARCHAR},
+      jobNature = #{record.jobnature,jdbcType=VARCHAR},
+      workYear = #{record.workyear,jdbcType=VARCHAR},
+      education = #{record.education,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      companyLogo = #{record.companylogo,jdbcType=VARCHAR},
+      positionAdvantage = #{record.positionadvantage,jdbcType=VARCHAR},
+      salary = #{record.salary,jdbcType=VARCHAR},
+      approve = #{record.approve,jdbcType=INTEGER},
+      industryField = #{record.industryfield,jdbcType=VARCHAR},
+      companyShortName = #{record.companyshortname,jdbcType=VARCHAR},
+      financeStage = #{record.financestage,jdbcType=VARCHAR},
+      companySize = #{record.companysize,jdbcType=VARCHAR},
+      companyLabelList = #{record.companylabellist,jdbcType=VARCHAR},
+      district = #{record.district,jdbcType=VARCHAR},
+      formatCreateTime = #{record.formatcreatetime,jdbcType=VARCHAR},
+      companyFullName = #{record.companyfullname,jdbcType=VARCHAR},
+      adWord = #{record.adword,jdbcType=INTEGER},
+      businessZones = #{record.businesszones,jdbcType=VARCHAR},
+      imState = #{record.imstate,jdbcType=VARCHAR},
+      lastLogin = #{record.lastlogin,jdbcType=VARCHAR},
+      publisherId = #{record.publisherid,jdbcType=INTEGER},
+      plus = #{record.plus,jdbcType=VARCHAR},
+      pcShow = #{record.pcshow,jdbcType=INTEGER},
+      appShow = #{record.appshow,jdbcType=INTEGER},
+      deliver = #{record.deliver,jdbcType=INTEGER},
+      gradeDescription = #{record.gradedescription,jdbcType=VARCHAR},
+      promotionScoreExplain = #{record.promotionscoreexplain,jdbcType=VARCHAR},
+      positionCatId = #{record.positioncatid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.buu.job.domain.JobList" >
+    update job_list
+    <set >
+      <if test="companyid != null" >
+        companyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="positionname != null" >
+        positionName = #{positionname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="jobnature != null" >
+        jobNature = #{jobnature,jdbcType=VARCHAR},
+      </if>
+      <if test="workyear != null" >
+        workYear = #{workyear,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="companylogo != null" >
+        companyLogo = #{companylogo,jdbcType=VARCHAR},
+      </if>
+      <if test="positionadvantage != null" >
+        positionAdvantage = #{positionadvantage,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="approve != null" >
+        approve = #{approve,jdbcType=INTEGER},
+      </if>
+      <if test="industryfield != null" >
+        industryField = #{industryfield,jdbcType=VARCHAR},
+      </if>
+      <if test="companyshortname != null" >
+        companyShortName = #{companyshortname,jdbcType=VARCHAR},
+      </if>
+      <if test="financestage != null" >
+        financeStage = #{financestage,jdbcType=VARCHAR},
+      </if>
+      <if test="companysize != null" >
+        companySize = #{companysize,jdbcType=VARCHAR},
+      </if>
+      <if test="companylabellist != null" >
+        companyLabelList = #{companylabellist,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="formatcreatetime != null" >
+        formatCreateTime = #{formatcreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="companyfullname != null" >
+        companyFullName = #{companyfullname,jdbcType=VARCHAR},
+      </if>
+      <if test="adword != null" >
+        adWord = #{adword,jdbcType=INTEGER},
+      </if>
+      <if test="businesszones != null" >
+        businessZones = #{businesszones,jdbcType=VARCHAR},
+      </if>
+      <if test="imstate != null" >
+        imState = #{imstate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastlogin != null" >
+        lastLogin = #{lastlogin,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherid != null" >
+        publisherId = #{publisherid,jdbcType=INTEGER},
+      </if>
+      <if test="plus != null" >
+        plus = #{plus,jdbcType=VARCHAR},
+      </if>
+      <if test="pcshow != null" >
+        pcShow = #{pcshow,jdbcType=INTEGER},
+      </if>
+      <if test="appshow != null" >
+        appShow = #{appshow,jdbcType=INTEGER},
+      </if>
+      <if test="deliver != null" >
+        deliver = #{deliver,jdbcType=INTEGER},
+      </if>
+      <if test="gradedescription != null" >
+        gradeDescription = #{gradedescription,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionscoreexplain != null" >
+        promotionScoreExplain = #{promotionscoreexplain,jdbcType=VARCHAR},
+      </if>
+      <if test="positioncatid != null" >
+        positionCatId = #{positioncatid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where positionId = #{positionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.buu.job.domain.JobList" >
+    update job_list
+    set companyId = #{companyid,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      positionName = #{positionname,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=VARCHAR},
+      jobNature = #{jobnature,jdbcType=VARCHAR},
+      workYear = #{workyear,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      companyLogo = #{companylogo,jdbcType=VARCHAR},
+      positionAdvantage = #{positionadvantage,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=VARCHAR},
+      approve = #{approve,jdbcType=INTEGER},
+      industryField = #{industryfield,jdbcType=VARCHAR},
+      companyShortName = #{companyshortname,jdbcType=VARCHAR},
+      financeStage = #{financestage,jdbcType=VARCHAR},
+      companySize = #{companysize,jdbcType=VARCHAR},
+      companyLabelList = #{companylabellist,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      formatCreateTime = #{formatcreatetime,jdbcType=VARCHAR},
+      companyFullName = #{companyfullname,jdbcType=VARCHAR},
+      adWord = #{adword,jdbcType=INTEGER},
+      businessZones = #{businesszones,jdbcType=VARCHAR},
+      imState = #{imstate,jdbcType=VARCHAR},
+      lastLogin = #{lastlogin,jdbcType=VARCHAR},
+      publisherId = #{publisherid,jdbcType=INTEGER},
+      plus = #{plus,jdbcType=VARCHAR},
+      pcShow = #{pcshow,jdbcType=INTEGER},
+      appShow = #{appshow,jdbcType=INTEGER},
+      deliver = #{deliver,jdbcType=INTEGER},
+      gradeDescription = #{gradedescription,jdbcType=VARCHAR},
+      promotionScoreExplain = #{promotionscoreexplain,jdbcType=VARCHAR},
+      positionCatId = #{positioncatid,jdbcType=INTEGER}
+    where positionId = #{positionid,jdbcType=INTEGER}
+  </update>
+</mapper>

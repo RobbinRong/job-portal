@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buu.job.mapper.JobDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.buu.job.domain.JobDetail" >
+    <id column="positionId" property="positionid" jdbcType="INTEGER" />
+    <result column="postDepartment" property="postdepartment" jdbcType="VARCHAR" />
+    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="salary" property="salary" jdbcType="VARCHAR" />
+    <result column="workPlace" property="workplace" jdbcType="VARCHAR" />
+    <result column="experience" property="experience" jdbcType="VARCHAR" />
+    <result column="educationBackground" property="educationbackground" jdbcType="VARCHAR" />
+    <result column="jobKind" property="jobkind" jdbcType="VARCHAR" />
+    <result column="welfare" property="welfare" jdbcType="VARCHAR" />
+    <result column="publishTime" property="publishtime" jdbcType="VARCHAR" />
+    <result column="jobFrom" property="jobfrom" jdbcType="VARCHAR" />
+    <result column="duty" property="duty" jdbcType="VARCHAR" />
+    <result column="postRequest" property="postrequest" jdbcType="VARCHAR" />
+    <result column="positionAddress" property="positionaddress" jdbcType="VARCHAR" />
+    <result column="jdPublisherName" property="jdpublishername" jdbcType="VARCHAR" />
+    <result column="jdPublisherPost" property="jdpublisherpost" jdbcType="VARCHAR" />
+    <result column="jdPublisherDealRatio" property="jdpublisherdealratio" jdbcType="INTEGER" />
+    <result column="companyName" property="companyname" jdbcType="VARCHAR" />
+    <result column="companyNickName" property="companynickname" jdbcType="VARCHAR" />
+    <result column="companyLagoHomePageURL" property="companylagohomepageurl" jdbcType="VARCHAR" />
+    <result column="companyIconURL" property="companyiconurl" jdbcType="VARCHAR" />
+    <result column="companyFeild" property="companyfeild" jdbcType="VARCHAR" />
+    <result column="companyScale" property="companyscale" jdbcType="VARCHAR" />
+    <result column="companyHomePageURL" property="companyhomepageurl" jdbcType="VARCHAR" />
+    <result column="companyDevelopeStage" property="companydevelopestage" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    positionId, postDepartment, post, salary, workPlace, experience, educationBackground, 
+    jobKind, welfare, publishTime, jobFrom, duty, postRequest, positionAddress, jdPublisherName, 
+    jdPublisherPost, jdPublisherDealRatio, companyName, companyNickName, companyLagoHomePageURL, 
+    companyIconURL, companyFeild, companyScale, companyHomePageURL, companyDevelopeStage
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.buu.job.domain.JobDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from job_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from job_detail
+    where positionId = #{positionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from job_detail
+    where positionId = #{positionid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.buu.job.domain.JobDetailExample" >
+    delete from job_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.buu.job.domain.JobDetail" >
+    insert into job_detail (positionId, postDepartment, post, 
+      salary, workPlace, experience, 
+      educationBackground, jobKind, welfare, 
+      publishTime, jobFrom, duty, 
+      postRequest, positionAddress, jdPublisherName, 
+      jdPublisherPost, jdPublisherDealRatio, 
+      companyName, companyNickName, companyLagoHomePageURL, 
+      companyIconURL, companyFeild, companyScale, 
+      companyHomePageURL, companyDevelopeStage
+      )
+    values (#{positionid,jdbcType=INTEGER}, #{postdepartment,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR}, 
+      #{salary,jdbcType=VARCHAR}, #{workplace,jdbcType=VARCHAR}, #{experience,jdbcType=VARCHAR}, 
+      #{educationbackground,jdbcType=VARCHAR}, #{jobkind,jdbcType=VARCHAR}, #{welfare,jdbcType=VARCHAR}, 
+      #{publishtime,jdbcType=VARCHAR}, #{jobfrom,jdbcType=VARCHAR}, #{duty,jdbcType=VARCHAR}, 
+      #{postrequest,jdbcType=VARCHAR}, #{positionaddress,jdbcType=VARCHAR}, #{jdpublishername,jdbcType=VARCHAR}, 
+      #{jdpublisherpost,jdbcType=VARCHAR}, #{jdpublisherdealratio,jdbcType=INTEGER}, 
+      #{companyname,jdbcType=VARCHAR}, #{companynickname,jdbcType=VARCHAR}, #{companylagohomepageurl,jdbcType=VARCHAR}, 
+      #{companyiconurl,jdbcType=VARCHAR}, #{companyfeild,jdbcType=VARCHAR}, #{companyscale,jdbcType=VARCHAR}, 
+      #{companyhomepageurl,jdbcType=VARCHAR}, #{companydevelopestage,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.buu.job.domain.JobDetail" >
+    insert into job_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="positionid != null" >
+        positionId,
+      </if>
+      <if test="postdepartment != null" >
+        postDepartment,
+      </if>
+      <if test="post != null" >
+        post,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="workplace != null" >
+        workPlace,
+      </if>
+      <if test="experience != null" >
+        experience,
+      </if>
+      <if test="educationbackground != null" >
+        educationBackground,
+      </if>
+      <if test="jobkind != null" >
+        jobKind,
+      </if>
+      <if test="welfare != null" >
+        welfare,
+      </if>
+      <if test="publishtime != null" >
+        publishTime,
+      </if>
+      <if test="jobfrom != null" >
+        jobFrom,
+      </if>
+      <if test="duty != null" >
+        duty,
+      </if>
+      <if test="postrequest != null" >
+        postRequest,
+      </if>
+      <if test="positionaddress != null" >
+        positionAddress,
+      </if>
+      <if test="jdpublishername != null" >
+        jdPublisherName,
+      </if>
+      <if test="jdpublisherpost != null" >
+        jdPublisherPost,
+      </if>
+      <if test="jdpublisherdealratio != null" >
+        jdPublisherDealRatio,
+      </if>
+      <if test="companyname != null" >
+        companyName,
+      </if>
+      <if test="companynickname != null" >
+        companyNickName,
+      </if>
+      <if test="companylagohomepageurl != null" >
+        companyLagoHomePageURL,
+      </if>
+      <if test="companyiconurl != null" >
+        companyIconURL,
+      </if>
+      <if test="companyfeild != null" >
+        companyFeild,
+      </if>
+      <if test="companyscale != null" >
+        companyScale,
+      </if>
+      <if test="companyhomepageurl != null" >
+        companyHomePageURL,
+      </if>
+      <if test="companydevelopestage != null" >
+        companyDevelopeStage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="positionid != null" >
+        #{positionid,jdbcType=INTEGER},
+      </if>
+      <if test="postdepartment != null" >
+        #{postdepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="workplace != null" >
+        #{workplace,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null" >
+        #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="educationbackground != null" >
+        #{educationbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="jobkind != null" >
+        #{jobkind,jdbcType=VARCHAR},
+      </if>
+      <if test="welfare != null" >
+        #{welfare,jdbcType=VARCHAR},
+      </if>
+      <if test="publishtime != null" >
+        #{publishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="jobfrom != null" >
+        #{jobfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="postrequest != null" >
+        #{postrequest,jdbcType=VARCHAR},
+      </if>
+      <if test="positionaddress != null" >
+        #{positionaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="jdpublishername != null" >
+        #{jdpublishername,jdbcType=VARCHAR},
+      </if>
+      <if test="jdpublisherpost != null" >
+        #{jdpublisherpost,jdbcType=VARCHAR},
+      </if>
+      <if test="jdpublisherdealratio != null" >
+        #{jdpublisherdealratio,jdbcType=INTEGER},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companynickname != null" >
+        #{companynickname,jdbcType=VARCHAR},
+      </if>
+      <if test="companylagohomepageurl != null" >
+        #{companylagohomepageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="companyiconurl != null" >
+        #{companyiconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="companyfeild != null" >
+        #{companyfeild,jdbcType=VARCHAR},
+      </if>
+      <if test="companyscale != null" >
+        #{companyscale,jdbcType=VARCHAR},
+      </if>
+      <if test="companyhomepageurl != null" >
+        #{companyhomepageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="companydevelopestage != null" >
+        #{companydevelopestage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.buu.job.domain.JobDetailExample" resultType="java.lang.Integer" >
+    select count(*) from job_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update job_detail
+    <set >
+      <if test="record.positionid != null" >
+        positionId = #{record.positionid,jdbcType=INTEGER},
+      </if>
+      <if test="record.postdepartment != null" >
+        postDepartment = #{record.postdepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.post != null" >
+        post = #{record.post,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salary != null" >
+        salary = #{record.salary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workplace != null" >
+        workPlace = #{record.workplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience != null" >
+        experience = #{record.experience,jdbcType=VARCHAR},
+      </if>
+      <if test="record.educationbackground != null" >
+        educationBackground = #{record.educationbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobkind != null" >
+        jobKind = #{record.jobkind,jdbcType=VARCHAR},
+      </if>
+      <if test="record.welfare != null" >
+        welfare = #{record.welfare,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishtime != null" >
+        publishTime = #{record.publishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobfrom != null" >
+        jobFrom = #{record.jobfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.duty != null" >
+        duty = #{record.duty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postrequest != null" >
+        postRequest = #{record.postrequest,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positionaddress != null" >
+        positionAddress = #{record.positionaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jdpublishername != null" >
+        jdPublisherName = #{record.jdpublishername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jdpublisherpost != null" >
+        jdPublisherPost = #{record.jdpublisherpost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jdpublisherdealratio != null" >
+        jdPublisherDealRatio = #{record.jdpublisherdealratio,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyname != null" >
+        companyName = #{record.companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companynickname != null" >
+        companyNickName = #{record.companynickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companylagohomepageurl != null" >
+        companyLagoHomePageURL = #{record.companylagohomepageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyiconurl != null" >
+        companyIconURL = #{record.companyiconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyfeild != null" >
+        companyFeild = #{record.companyfeild,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyscale != null" >
+        companyScale = #{record.companyscale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyhomepageurl != null" >
+        companyHomePageURL = #{record.companyhomepageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companydevelopestage != null" >
+        companyDevelopeStage = #{record.companydevelopestage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update job_detail
+    set positionId = #{record.positionid,jdbcType=INTEGER},
+      postDepartment = #{record.postdepartment,jdbcType=VARCHAR},
+      post = #{record.post,jdbcType=VARCHAR},
+      salary = #{record.salary,jdbcType=VARCHAR},
+      workPlace = #{record.workplace,jdbcType=VARCHAR},
+      experience = #{record.experience,jdbcType=VARCHAR},
+      educationBackground = #{record.educationbackground,jdbcType=VARCHAR},
+      jobKind = #{record.jobkind,jdbcType=VARCHAR},
+      welfare = #{record.welfare,jdbcType=VARCHAR},
+      publishTime = #{record.publishtime,jdbcType=VARCHAR},
+      jobFrom = #{record.jobfrom,jdbcType=VARCHAR},
+      duty = #{record.duty,jdbcType=VARCHAR},
+      postRequest = #{record.postrequest,jdbcType=VARCHAR},
+      positionAddress = #{record.positionaddress,jdbcType=VARCHAR},
+      jdPublisherName = #{record.jdpublishername,jdbcType=VARCHAR},
+      jdPublisherPost = #{record.jdpublisherpost,jdbcType=VARCHAR},
+      jdPublisherDealRatio = #{record.jdpublisherdealratio,jdbcType=INTEGER},
+      companyName = #{record.companyname,jdbcType=VARCHAR},
+      companyNickName = #{record.companynickname,jdbcType=VARCHAR},
+      companyLagoHomePageURL = #{record.companylagohomepageurl,jdbcType=VARCHAR},
+      companyIconURL = #{record.companyiconurl,jdbcType=VARCHAR},
+      companyFeild = #{record.companyfeild,jdbcType=VARCHAR},
+      companyScale = #{record.companyscale,jdbcType=VARCHAR},
+      companyHomePageURL = #{record.companyhomepageurl,jdbcType=VARCHAR},
+      companyDevelopeStage = #{record.companydevelopestage,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.buu.job.domain.JobDetail" >
+    update job_detail
+    <set >
+      <if test="postdepartment != null" >
+        postDepartment = #{postdepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="workplace != null" >
+        workPlace = #{workplace,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null" >
+        experience = #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="educationbackground != null" >
+        educationBackground = #{educationbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="jobkind != null" >
+        jobKind = #{jobkind,jdbcType=VARCHAR},
+      </if>
+      <if test="welfare != null" >
+        welfare = #{welfare,jdbcType=VARCHAR},
+      </if>
+      <if test="publishtime != null" >
+        publishTime = #{publishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="jobfrom != null" >
+        jobFrom = #{jobfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        duty = #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="postrequest != null" >
+        postRequest = #{postrequest,jdbcType=VARCHAR},
+      </if>
+      <if test="positionaddress != null" >
+        positionAddress = #{positionaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="jdpublishername != null" >
+        jdPublisherName = #{jdpublishername,jdbcType=VARCHAR},
+      </if>
+      <if test="jdpublisherpost != null" >
+        jdPublisherPost = #{jdpublisherpost,jdbcType=VARCHAR},
+      </if>
+      <if test="jdpublisherdealratio != null" >
+        jdPublisherDealRatio = #{jdpublisherdealratio,jdbcType=INTEGER},
+      </if>
+      <if test="companyname != null" >
+        companyName = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companynickname != null" >
+        companyNickName = #{companynickname,jdbcType=VARCHAR},
+      </if>
+      <if test="companylagohomepageurl != null" >
+        companyLagoHomePageURL = #{companylagohomepageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="companyiconurl != null" >
+        companyIconURL = #{companyiconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="companyfeild != null" >
+        companyFeild = #{companyfeild,jdbcType=VARCHAR},
+      </if>
+      <if test="companyscale != null" >
+        companyScale = #{companyscale,jdbcType=VARCHAR},
+      </if>
+      <if test="companyhomepageurl != null" >
+        companyHomePageURL = #{companyhomepageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="companydevelopestage != null" >
+        companyDevelopeStage = #{companydevelopestage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where positionId = #{positionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.buu.job.domain.JobDetail" >
+    update job_detail
+    set postDepartment = #{postdepartment,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=VARCHAR},
+      workPlace = #{workplace,jdbcType=VARCHAR},
+      experience = #{experience,jdbcType=VARCHAR},
+      educationBackground = #{educationbackground,jdbcType=VARCHAR},
+      jobKind = #{jobkind,jdbcType=VARCHAR},
+      welfare = #{welfare,jdbcType=VARCHAR},
+      publishTime = #{publishtime,jdbcType=VARCHAR},
+      jobFrom = #{jobfrom,jdbcType=VARCHAR},
+      duty = #{duty,jdbcType=VARCHAR},
+      postRequest = #{postrequest,jdbcType=VARCHAR},
+      positionAddress = #{positionaddress,jdbcType=VARCHAR},
+      jdPublisherName = #{jdpublishername,jdbcType=VARCHAR},
+      jdPublisherPost = #{jdpublisherpost,jdbcType=VARCHAR},
+      jdPublisherDealRatio = #{jdpublisherdealratio,jdbcType=INTEGER},
+      companyName = #{companyname,jdbcType=VARCHAR},
+      companyNickName = #{companynickname,jdbcType=VARCHAR},
+      companyLagoHomePageURL = #{companylagohomepageurl,jdbcType=VARCHAR},
+      companyIconURL = #{companyiconurl,jdbcType=VARCHAR},
+      companyFeild = #{companyfeild,jdbcType=VARCHAR},
+      companyScale = #{companyscale,jdbcType=VARCHAR},
+      companyHomePageURL = #{companyhomepageurl,jdbcType=VARCHAR},
+      companyDevelopeStage = #{companydevelopestage,jdbcType=VARCHAR}
+    where positionId = #{positionid,jdbcType=INTEGER}
+  </update>
+</mapper>
